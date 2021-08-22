@@ -97,38 +97,30 @@ public class PathCreator : MonoBehaviour
 
     void handleTouch(Vector3 screePos)
     {
-        //var ray = Camera.main.ScreenPointToRay(screePos);
-        RaycastHit hit;
-        //if (Physics.Raycast(ray, out hit, Mathf.Infinity, 1 << LayerMask.NameToLayer("Ground")))
+        var worldPos = Camera.main.ScreenToWorldPoint(screePos);
+        worldPos.z = 0;
+
+        List<Vector3> dots = new List<Vector3>();
+        dots.Add(racoon.transform.position);
+        dots.AddRange(pathList.Select(it => it.pos));
+        bool closeEnough = dots.Any(it => Vector3.Magnitude(it - worldPos) < distanceForDot);
+        if (!closeEnough)
         {
-            //Vector3 worldPos = hit.point;
-            var worldPos = Camera.main.ScreenToWorldPoint(screePos);
-            worldPos.z = 0;
-            Debug.Log("WORLD " + worldPos);
+            return;
+        }
 
+        float minDistance = 1;
+        GameObject go = null;
+        if (lastCreated == null || lastCreated != null && Vector3.Magnitude(lastCreated.transform.position - worldPos) > minDistance)
+        {
+            go = Instantiate(pathPrefab, worldPos, Quaternion.identity);
+            lastCreated = go;
 
-            List<Vector3> dots = new List<Vector3>();
-            dots.Add(racoon.transform.position);
-            dots.AddRange(pathList.Select(it => it.pos));
-            bool closeEnough = dots.Any(it => Vector3.Magnitude(it - worldPos) < distanceForDot);
-            if (!closeEnough)
-            {
-                return;
-            }
-
-            float minDistance = 1;
-            GameObject go = null;
-            if (lastCreated == null || lastCreated != null && Vector3.Magnitude(lastCreated.transform.position - worldPos) > minDistance)
-            {
-                go = Instantiate(pathPrefab, worldPos, Quaternion.identity);
-                lastCreated = go;
-
-                PathDot dot = new PathDot();
-                dot.go = go;
-                dot.pos = worldPos;
-                Debug.Log("ADD DOT " + dot.go.transform.position);
-                pathList.Add(dot);
-            }
+            PathDot dot = new PathDot();
+            dot.go = go;
+            dot.pos = worldPos;
+            Debug.Log("ADD DOT " + dot.go.transform.position);
+            pathList.Add(dot);
         }
     }
 

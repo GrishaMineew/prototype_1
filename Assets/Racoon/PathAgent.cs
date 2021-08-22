@@ -33,17 +33,14 @@ public class PathAgent : MonoBehaviour
             LevelLoader.Replay();
         }
 
-        //handleSpeed();
         if (pathCreator.IsEmpty())
         {
             //Debug.Log("EMPTY PATH");
             return;
         }
         Vector3 next = pathCreator.GetNext();
-        // Vector3 pos = Vector3.MoveTowards(transform.position, next, speed * Time.deltaTime);
-        // transform.position = pos;
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        Debug.Log("DESTINATION " + next);
+        //Debug.Log("DESTINATION " + next);
         agent.SetDestination(next);
         
         
@@ -54,18 +51,6 @@ public class PathAgent : MonoBehaviour
         }
 
     }
-
-    //void handleSpeed() {
-    //    float v = GetComponent<NavMeshAgent>().velocity.magnitude;
-    //    // Debug.Log("VELOCITY " + v);
-    //    if(v > runSpeed) {
-    //        runRacoon.SetActive(true);
-    //        idleRacoon.SetActive(false);
-    //    } else {
-    //        runRacoon.SetActive(false);
-    //        idleRacoon.SetActive(true);
-    //    }
-    //}
 
     void OnCollisionEnter(Collision other)
     {
