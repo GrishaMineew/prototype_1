@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class SausageEater : MonoBehaviour
 {
     public Exit exit;
-    public string sceneNext;
 
     private int sausageMax = 0;
     private int sausageCount = 0;
@@ -15,14 +14,19 @@ public class SausageEater : MonoBehaviour
     {
         sausageMax = FindObjectsOfType<Sausage>().Length;
         exit = FindObjectOfType<Exit>();
+        if(exit == null)
+        {
+            Debug.LogWarning("Exit not exists");
+        }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("EATER " + other.gameObject.name);
         if (other.gameObject.GetComponent<Sausage>() != null)
         {
             sausageCount++;
-            if (sausageCount == sausageMax)
+            if (sausageCount == sausageMax && exit != null)
             {
                 exit.OpenDoor();
             }
@@ -46,9 +50,9 @@ public class SausageEater : MonoBehaviour
 
     IEnumerator LoadNextScene()
     {
-        string currentScene = SceneManager.GetActiveScene().name;
+        Scene currentScene = SceneManager.GetActiveScene();
         yield return SceneManager.UnloadSceneAsync(currentScene);
-        yield return SceneManager.LoadSceneAsync(sceneNext);
+        yield return SceneManager.LoadSceneAsync(currentScene.buildIndex + 1);
         yield break;
     }
 }

@@ -105,7 +105,7 @@ public class PathCreator : MonoBehaviour
             PathDot dot = new PathDot();
             dot.go = go;
             dot.pos = worldPos;
-            Debug.Log("ADD DOT " + dot.go.transform.position);
+            //Debug.Log("ADD DOT " + dot.go.transform.position);
             pathList.Add(dot);
         }
     }

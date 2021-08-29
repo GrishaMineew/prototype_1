@@ -12,7 +12,6 @@ public class PathAgent : MonoBehaviour
 
     private PathCreator pathCreator;
     private bool fail;
-    private RacoonStartPosition startPos;
 
     void Start()
     {
@@ -22,6 +21,7 @@ public class PathAgent : MonoBehaviour
         }
 
         NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        RacoonStartPosition startPos = FindObjectOfType<RacoonStartPosition>();
         bool warped = agent.Warp(startPos.transform.position);
     }
 
