@@ -7,10 +7,12 @@ using UnityEngine.AI;
 
 public class PathCreator : MonoBehaviour
 {
-    public float distanceForDot = 3F;
+    public float distanceRacoonDot = 3F;
+    public float distanceDotDot = 1F;
     public GameObject pathPrefab;
     public NavMeshAgent racoon;
     public GameObject fingerAnimation;
+
     class PathDot
     {
         public Vector3 pos;
@@ -103,15 +105,14 @@ public class PathCreator : MonoBehaviour
         List<Vector3> dots = new List<Vector3>();
         dots.Add(racoon.transform.position);
         dots.AddRange(pathList.Select(it => it.pos));
-        bool closeEnough = dots.Any(it => Vector3.Magnitude(it - worldPos) < distanceForDot);
+        bool closeEnough = dots.Any(it => Vector3.Magnitude(it - worldPos) < distanceRacoonDot);
         if (!closeEnough)
         {
             return;
         }
 
-        float minDistance = 1;
         GameObject go = null;
-        if (lastCreated == null || lastCreated != null && Vector3.Magnitude(lastCreated.transform.position - worldPos) > minDistance)
+        if (lastCreated == null || lastCreated != null && Vector3.Magnitude(lastCreated.transform.position - worldPos) > distanceDotDot)
         {
             go = Instantiate(pathPrefab, worldPos, Quaternion.identity);
             lastCreated = go;

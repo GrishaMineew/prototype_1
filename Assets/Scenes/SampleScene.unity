@@ -2915,5 +2915,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Racoon
       objectReference: {fileID: 0}
+    - target: {fileID: 5314085145889930093, guid: 15aa6b70659c1534d9b37f4748247a5c, type: 3}
+      propertyPath: distanceDotDot
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15aa6b70659c1534d9b37f4748247a5c, type: 3}
