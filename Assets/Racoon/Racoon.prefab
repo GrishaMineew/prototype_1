@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5314085144664712565}
   - component: {fileID: 5314085144664712564}
+  - component: {fileID: 105065151}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -83,6 +84,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &105065151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5314085144664712566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad13476e83339cc44bb798a63e53cd4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5314085145889930089
 GameObject:
   m_ObjectHideFlags: 0
@@ -166,10 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6451c1fb7c06744a941616397ed428, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceForDot: 3
+  distanceRacoonDot: 3
+  distanceDotDot: 1
   pathPrefab: {fileID: 4939701059694192135, guid: 730046c5680304b488bf293fb4d0a765, type: 3}
-  racoon: {fileID: 0}
-  fingerAnimation: {fileID: 0}
 --- !u!58 &5314085145889930092
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -10,8 +10,8 @@ public class PathCreator : MonoBehaviour
     public float distanceRacoonDot = 3F;
     public float distanceDotDot = 1F;
     public GameObject pathPrefab;
-    public NavMeshAgent racoon;
-    public GameObject fingerAnimation;
+    
+    private NavMeshAgent racoon;
 
     class PathDot
     {
@@ -41,11 +41,6 @@ public class PathCreator : MonoBehaviour
             {
                 handleTouch(touch.position);
             }
-            if (touch.phase == TouchPhase.Ended)
-            {
-                // pathList = tempPathList;
-                disableFingerAnimation();
-            }
         }
 
         if (Input.GetMouseButton(0))
@@ -59,17 +54,7 @@ public class PathCreator : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            // Debug.Log("RELEASE");
             replacePath();
-            disableFingerAnimation();
-        }
-    }
-
-    void disableFingerAnimation()
-    {
-        if (fingerAnimation != null)
-        {
-            fingerAnimation.SetActive(false);
         }
     }
 
